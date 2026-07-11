@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran RIFKI MARKET X RAPZZ</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid #00ff88;
+        }
+
+        h2 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: #fff;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #00ff88;
+        }
+
+        .math-challenge {
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px dashed #00ff88;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .math-challenge span.question {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00ff88;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #00cc6a;
+        }
+
+        #result {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #result a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background-color: #00ff88;
+            color: #121212;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 18px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="registration-form">
+            <h2>MEMBER RIFKI MARKET X RAPZZ</h2>
+            
+            <div class="form-group">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" placeholder="Masukkan nama kamu" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Buat username" required>
+            </div>
+
+            <div class="math-challenge">
+                <span class="progress-text" id="progress-text">Soal 1 dari 50</span>
+                <span class="question" id="question"></span>
+                <div class="form-group" style="margin-top: 15px; margin-bottom: 0;">
+                    <input type="number" id="math-answer" placeholder="Jawaban kamu" required>
+                </div>
+            </div>
+
+            <button onclick="checkAnswer()" id="submit-btn">Jawab & Lanjut</button>
+        </div>
+
+        <div id="result">
+            <h2>Pendaftaran Berhasil! 🎉</h2>
+            <p>Selamat, kamu hebat berhasil menyelesaikan 50 tantangan.</p>
+            <a href="https://panelgacor.argacloud.my.id/cp/x/Muridd/felix/?page=main">kamu menang</a>
+        </div>
+    </div>
+
+    <script>
+        let correctAnswer = 0;
+        let currentQuestion = 1;
+        const totalQuestions = 50;
+
+        // Fungsi untuk membuat soal matematika acak
+        function generateMathQuestion() {
+            // Mengacak dua angka dari 1 sampai 20
+            const num1 = Math.floor(Math.random() * 20) + 1; 
+            const num2 = Math.floor(Math.random() * 20) + 1; 
+            
+            correctAnswer = num1 + num2;
+            
+            document.getElementById('progress-text').innerText = `Soal ${currentQuestion} dari ${totalQuestions}`;
+            document.getElementById('question').innerText = `Berapa hasil dari ${num1} + ${num2}?`;
+            document.getElementById('math-answer').value = ''; // Kosongkan input
+            document.getElementById('math-answer').focus(); // Fokus kembali ke input
+            
+            // Ubah teks tombol jika di soal terakhir
+            if (currentQuestion === totalQuestions) {
+                document.getElementById('submit-btn').innerText = "Selesaikan Pendaftaran";
+            }
+        }
+
+        // Fungsi untuk mengecek jawaban saat tombol diklik
+        function checkAnswer() {
+            const name = document.getElementById('name').value;
+            const username = document.getElementById('username').value;
+            const userAnswer = parseInt(document.getElementById('math-answer').value);
+
+            if (!name || !username) {
+                alert('Tolong isi nama dan username terlebih dahulu!');
+                return;
+            }
+
+            if (isNaN(userAnswer)) {
+                alert('Masukkan jawaban matematika dengan angka!');
+                return;
+            }
+
+            if (userAnswer === correctAnswer) {
+                // Jika jawaban benar
+                if (currentQuestion < totalQuestions) {
+                    currentQuestion++; // Lanjut ke soal berikutnya
+                    generateMathQuestion();
+                } else {
+                    // Jika 50 soal sudah selesai
+                    document.getElementById('registration-form').style.display = 'none';
+                    document.getElementById('result').style.display = 'block';
+                }
+            } else {
+                // Jika jawaban salah
+                alert('Jawaban salah! Coba lagi dari soal ini.');
+                document.getElementById('math-answer').value = ''; // Kosongkan input agar bisa jawab lagi
+            }
+        }
+
+        // Fitur tambahan: bisa tekan "Enter" di keyboard untuk menjawab
+        document.getElementById('math-answer').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+
+        // Panggil fungsi pertama kali
+        window.onload = generateMathQuestion;
+    </script>
+
+</body>
+</html>
